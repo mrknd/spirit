@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block title %} | Search {% endblock %}
+
+{% block content %}
+    {% load humanize %}
+
+    <!-- Banner start -->
+    <div class="sub-banner overview-bgi">
+        <div class="container breadcrumb-area">
+            <div class="breadcrumb-areas">
+                <h1>Результат за пошуком</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'home' %}">Головна</a></li>
+                    <li class="active">Пошук</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Banner end -->
+
+    <!-- Search box 3 start -->
+    <div class="search-box-3 sb-7 bg-active">
+        <div class="container">
+            <div class="search-area-inner">
+                <div class="search-contents">
+                    <form method="GET" action="{% url 'search' %}">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6 ">
+                                <div class="form-group">
+                                    <select class="selectpicker search-fields" name="model">
+                                        <option disabled="disabled" selected="selected">Марка</option>
+
+                                        {% for model in model_search %}
+                                            <option value="{{ model }}">{{ model }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <select class="selectpicker search-fields" name="fuel_type">
+                                        <option disabled="disabled" selected="selected">Тип палива</option>
+                                        {% for fuel_type in fuel_type_search %}
+                                            <option value="{{ fuel_type }}">{{ fuel_type }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <select class="selectpicker search-fields" name="year">
+                                        <option disabled="disabled" selected="selected">Рік</option>
+
+                                        {% for year in year_search %}
+                                            <option value="{{ year }}">{{ year }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <select class="selectpicker search-fields" name="body_style">
+                                        <option disabled="disabled" selected="selected">Тип кузова</option>
+
+                                        {% for body_style in body_style_search %}
+                                            <option value="{{ body_style }}">{{ body_style }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <select class="selectpicker search-fields" name="transmission">
+                                        <option disabled="disabled" selected="selected">Коробка</option>
+
+                                        {% for transmission in transmission_search %}
+                                            <option value="{{ transmission }}">{{ transmission }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <div class="range-slider">
+                                        <div data-min="0" data-max="150000" data-unit="USD" data-min-name="min_price"
+                                             data-max-name="max_price" class="range-slider-ui ui-slider"
+                                             aria-disabled="false"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <button class="btn btn-block button-theme btn-md border-rad">
+                                        <i class="fa fa-search"></i>Пошук
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search box 3 end -->
+
+    <!-- Featured car start -->
+    <div class="featured-car content-area">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1><span>Ваш</span> пошук</h1>
+                {#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>#}
+            </div>
+            <div class="row">
+
+                {% for car in cars %}
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="car-box">
+                            <a href="{% url 'car_detail' car.id %}" class="car-img">
+
+                                <div class="car-thumbnail">
+                                    {#                                    <div class="tag">For Sale</div>#}
+                                    <img class="d-block w-100" src="{{ car.car_photo.url }}" alt="car"
+                                         style="min-height: 262px; max-height: 262px;">
+                                    <div class="facilities-list clearfix">
+                                        <ul>
+                                            <li>
+                                                <span><i class="flaticon-way"></i></span>{{ car.miles | intcomma }} km
+                                            </li>
+                                            <li>
+                                                <span><i class="flaticon-calendar-1"></i></span>{{ car.year }}
+                                            </li>
+                                            <li>
+                                                <span><i
+                                                        class="flaticon-manual-transmission"></i></span>{{ car.transmission }}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </a>
+
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'car_detail' car.pk %}">{{ car.car_title }}</a>
+                                </h1>
+                                <div class="location">
+                                    <a href="{% url 'car_detail' car.id %}">
+                                        <i class="flaticon-pin"></i>{{ car.state }}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left ratings days">
+                                    <p class="cartype">{{ car.body_style }}</p>
+                                </div>
+                                <div class="pull-right">
+                                    <p class="price">${{ car.price | intcomma }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <!-- Featured car end -->
+
+{% endblock %}

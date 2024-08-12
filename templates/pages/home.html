@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+
+{% block title %} | Home {% endblock %}
+
+{% block content %}
+
+    {% load humanize %}
+    {% load static %}
+
+
+    <!-- Banner start -->
+    <!-- Inquiry Modal -->
+    <div class="modal fade" style="margin-top: 100px;" id="inquiryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="contact-dealer modal-header">
+                    <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                    <center><img src="{% static 'img/logos/white-logo.png' %}"></center>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'inquiry_short' %}" method="POST">
+                        {% csrf_token %}
+
+
+                        <div class="form-group">
+                            <label for="name" class="col-form-label"
+                                   style="font-weight: 700; font-size: 18px;">ЗАЛИШТЕ КОНТАКТНІ
+                                ДАНІ.
+                                МИ ЗВ'ЯЖЕМОСЬ З ВАМИ НАЙБЛИЖЧИМ ЧАСОМ</label>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="first_name" class="form-control"
+                                           placeholder="Ім'я" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="phone" class="col-form-label">Контакт:</label>
+                                    <input type="text" name="phone"
+                                           placeholder="Мобільний телефон"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="col-form-label">Коментар</label>
+                            <textarea name="message" class="form-control"
+                                      placeholder="Залиште ваш коментар (необов'язково)"></textarea>
+                        </div>
+                        <hr>
+                        <input type="submit" value="Відправити" class="btn btn-block btn-danger" style="background-color:#680A08;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner" id="banner">
+        <div class="carousel-inner banner-slider-inner text-center">
+            <!-- PC Version -->
+            <div class="carousel-item banner-max-height active item-bg pc-versn">
+                <img class="d-block w-100 h-100 text-center" src="{% static 'img/car-0.jpg' %}" alt="banner">
+                <div class="carousel-content container banner-info-2 bi-2 text-left shadow-box">
+                    <h3>АВТО <span class="red-text">З США</span></h3>
+                    <h5 style="font-weight: 600"><span class="red-text">SPIRIT AUTO</span> – ГАРАНТІЯ НАДІЙНОСТІ ТА ВИГОДИ</h5>
+                    <button class="btn btn-outline-danger bomd" data-toggle="modal" data-target="#inquiryModal">
+                        Консультація
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Search box 3 start -->
+        <div class="search-box-4 sb-8">
+            <form action="{% url 'search' %}" method="">
+
+                <div class="form-group">
+                    <select class="form-control search-fields" name="model">
+                        <option selected="true" disabled="disabled">Модель</option>
+
+                        {% for model in model_search %}
+                            <option value="{{ model }}">{{ model }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="year">
+                        <option selected="true" disabled="disabled">Рік</option>
+
+                        {% for year in year_search %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="body_style">
+                        <option selected="true" disabled="disabled">Тип кузова</option>
+
+                        {% for body_style in body_style_search %}
+                            <option value="{{ body_style }}">{{ body_style }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control search-fields" name="fuel_type">
+                        <option selected="true" disabled="disabled">Тип палива</option>
+
+                        {% for fuel_type in fuel_type_search %}
+                            <option value="{{ fuel_type }}">{{ fuel_type }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="range-slider clearfix">
+                    <label>Ціна</label>
+                    <div data-min="0" data-max="150000" data-min-name="min_price" data-max-name="max_price"
+                         data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block button-theme btn-md" style="background-color: #680A08;">
+                        <i class="fa fa-search"></i> Пошук
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Search box 3 end -->
+    </div>
+
+    <!-- Banner end -->
+
+
+    <!-- Featured car start -->
+    <div class="widget advanced-search2 display-mobile p-4">
+        <h3 class="sidebar-title">Знайдіть те, що так давно шукали</h3>
+        <form action="{% url 'search' %}" method="">
+
+            <div class="form-group">
+                <select class="form-control search-fields" name="model">
+                    <option selected="true" disabled="disabled">Модель</option>
+
+                    {% for model in model_search %}
+                        <option value="{{ model }}">{{ model }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control search-fields" name="year">
+                    <option selected="true" disabled="disabled">Рік</option>
+
+                    {% for year in year_search %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control search-fields" name="fuel_type">
+                    <option selected="true" disabled="disabled">Тип палива</option>
+
+                    {% for fuel_type in fuel_type_search %}
+                        <option value="{{ fuel_type }}">{{ fuel_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control search-fields" name="body_style">
+                    <option selected="true" disabled="disabled">Тип кузова</option>
+
+                    {% for body_style in body_style_search %}
+                        <option value="{{ body_style }}">{{ body_style }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="range-slider clearfix">
+                <label>Ціна</label>
+                <div data-min="0" data-max="150000" data-min-name="min_price"
+                     data-max-name="max_price"
+                     data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-block button-theme btn-md">
+                    <i class="fa fa-search"></i> Пошук
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="featured-car content-area-5">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1><span>Цікаві</span> Пропозиції</h1>
+            </div>
+            <!-- Slick slider area start -->
+            <div class="row">
+                {% for car in featured_cars %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="car-box">
+                            <a href="{% url 'car_detail' car.id %}" class="car-img">
+
+                                <div class="car-thumbnail">
+                                    {#                                    <div class="tag">For Sale</div>#}
+                                    <img class="d-block w-100" src="{{ car.car_photo.url }}" alt="car"
+                                         style="min-height: 262px; max-height: 262px;">
+                                    <div class="facilities-list clearfix">
+                                        <ul>
+                                            <li>
+                                                <span><i class="flaticon-way" style="color: #DACBB6;"></i></span>{{ car.miles | intcomma }} km
+                                            </li>
+                                            <li>
+                                                <span><i class="flaticon-calendar-1" style="color: #DACBB6;"></i></span>{{ car.year }}
+                                            </li>
+                                            <li>
+                                                <span><i
+                                                        class="flaticon-manual-transmission" style="color: #DACBB6;"></i></span>{{ car.transmission }}
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'car_detail' car.pk %}">{{ car.car_title }}</a>
+                                </h1>
+                            </div>
+                            <div class="footer clearfix mb-3">
+                                <div class="pull-left ratings days">
+                                    <p class="cartype">{{ car.body_style }}</p>
+                                </div>
+                                <div class="pull-right" style="color: #680A08;">
+                                    <p class="price" style="color: #680A08;">${{ car.price | intcomma }}</p>
+                                </div>
+
+
+                            </div>
+                            <button class="btn btn-outline-danger bomd btn-block btn-lg" data-toggle="modal"
+                                    data-target="#inquiryModal">Консультація
+                            </button>
+
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Featured car end -->
+
+    <!-- Rent car start -->
+    <div class="featured-car content-area">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1>Авто з <span>США</span></h1>
+                <p><span class="red-text">SPIRIT AUTO</span> – ЦЕ БЕЗПЕЧНО ТА НАДІЙНО</p>
+            </div>
+            <div class="row">
+                {% for car in all_cars %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="car-box">
+                            <a href="{% url 'car_detail' car.id %}" class="car-img">
+
+                                <div class="car-thumbnail">
+                                    {#                                    <div class="tag">For Sale</div>#}
+                                    <img class="d-block w-100 size-car" src="{{ car.car_photo.url }}" alt="car"
+                                         style="">
+                                    <div class="facilities-list clearfix">
+                                        <ul>
+                                            <li>
+                                                <span><i class="flaticon-way" style="color: #DACBB6;"></i></span>{{ car.miles | intcomma }} km
+                                            </li>
+                                            <li>
+                                                <span><i class="flaticon-calendar-1" style="color: #DACBB6;"></i></span>{{ car.year }}
+                                            </li>
+                                            <li>
+                                                <span><i
+                                                        class="flaticon-manual-transmission" style="color: #DACBB6;"></i></span>{{ car.transmission }}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </a>
+
+                            <div class="detail">
+                                <h1 class="title">
+                                    <a href="{% url 'car_detail' car.pk %}">{{ car.car_title }}</a>
+                                </h1>
+
+                            </div>
+                            <div class="footer clearfix">
+                                <div class="pull-left ratings days">
+                                    <p class="cartype">{{ car.body_style }}</p>
+                                </div>
+                                <div class="pull-right"  style="">
+                                    <p class="price" style="color: #680A08;">${{ car.price | intcomma }}</p>
+                                </div>
+
+
+                            </div>
+                            <button class="btn btn-outline-danger bomd btn-block btn-lg mt-4" data-toggle="modal"
+                                    data-target="#inquiryModal">Консультація
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+            </div>
+            <div style="margin: 0 auto; display: flex; justify-content: center;">
+                <a href="{% url 'cars' %}">
+                    <button class="btn btn-outline-danger bomd btn-lg mt-4">Більше Авто
+                    </button>
+                </a>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <!-- Rent car end -->
+
+
+    <!-- Our team start -->
+    <div class="our-team content-area bg-grea-3">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1>Команда <span>Професіоналів</span></h1>
+                <p>Ваша довіра для нас найважливіша</p>
+            </div>
+            <!-- Slick slider area start -->
+            <div class="slick-slider-area clearfix">
+                <div class="row slick-carousel"
+                     data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                    {% for team in teams %}
+                        <div class="slick-slide-item">
+                            <div class="team-1">
+                                <div class="photo">
+                                    <a href="#">
+                                        <img src="{{ team.photo.url }}" alt="team-1" class="img-fluid">
+                                    </a>
+                                    <div class="social-list clearfix">
+                                        <a href="{{ team.facebook_link }}" target="_blank" class="facebook-bg"><i
+                                                class="fa fa-facebook"></i></a>
+                                        <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
+                                        <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <h4><a href="team-detail.html">{{ team.first_name }} {{ team.last_name }}</a></h4>
+                                    <h5>{{ team.designation }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our team end -->
+
+    <!-- Intro section start -->
+    <div class="intro-section" style="background: #680A08;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="intro-text">
+                        <h3 style="font-weight: normal;">Маєте запитання?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <a href="{% url 'contact' %}" class="btn btn-md" style="font-weight: bold;">Замовити дзвінок</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Intro section end -->
+
+
+    <!-- Car Overview Modal -->
+
+{% endblock %}

@@ -1,0 +1,640 @@
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block title %} | {{ single_car.car_title }} {% endblock %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#    {% load static %}#}
+{#    {% load humanize %}#}
+{##}
+{#    <!-- Sub banner start -->#}
+{##}
+{#    <div class="sub-banner overview-bgi">#}
+{#        <div class="container breadcrumb-area">#}
+{#            <div class="breadcrumb-areas">#}
+{#                <h1>{{ single_car.car_title }}</h1>#}
+{#                <ul class="breadcrumbs">#}
+{#                    <li><a href="{% url 'home' %}">Головна</a></li>#}
+{#                    <li class="active">{{ single_car.car_title }}</li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Sub Banner end -->#}
+{##}
+{#    <!-- Car details page start -->#}
+{#    <div class="car-details-page content-area-6">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-8 col-md-12 col-xs-12">#}
+{#                    <div class="car-details-section">#}
+{#                        <!-- Heading start -->#}
+{#                        <div class="heading-car clearfix">#}
+{#                            {% include 'includes/messages.html' %}#}
+{#                            <div class="pull-left">#}
+{#                                <h3>{{ single_car.car_title }}</h3>#}
+{#                            </div>#}
+{#                            <div class="pull-right">#}
+{#                                <h3><span>{{ single_car.price | intcomma }}$</span></h3>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40">#}
+{#                            <!-- main slider carousel items -->#}
+{#                            <div class="carousel-inner">#}
+{#                                <div class="active item carousel-item" data-slide-number="0">#}
+{#                                    <img src="{{ single_car.car_photo.url }}" class="img-fluid" alt="slider-car">#}
+{#                                </div>#}
+{##}
+{#                                {% if single_car.car_photo_1 %}#}
+{#                                    <div class="item carousel-item" data-slide-number="1">#}
+{#                                        <img src="{{ single_car.car_photo_1.url }}" class="img-fluid" alt="slider-car">#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{##}
+{#                                {% if single_car.car_photo_2 %}#}
+{#                                    <div class="item carousel-item" data-slide-number="2">#}
+{#                                        <img src="{{ single_car.car_photo_2.url }}" class="img-fluid" alt="slider-car">#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{##}
+{#                                {% if single_car.car_photo_3 %}#}
+{#                                    <div class="item carousel-item" data-slide-number="4">#}
+{#                                        <img src="{{ single_car.car_photo_3.url }}" class="img-fluid" alt="slider-car">#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{##}
+{#                                {% if single_car.car_photo_4 %}#}
+{#                                    <div class="item carousel-item" data-slide-number="5">#}
+{#                                        <img src="{{ single_car.car_photo_4.url }}" class="img-fluid" alt="slider-car">#}
+{#                                    </div>#}
+{#                                {% endif %}#}
+{##}
+{#                            </div>#}
+{#                            <!-- main slider carousel nav controls -->#}
+{#                            <div class="carousel-indicators-section clearfix">#}
+{#                                <ul class="carousel-indicators car-properties list-inline nav nav-justified">#}
+{#                                    <li class="list-inline-item active">#}
+{#                                        <a id="carousel-selector-0" class="selected" data-slide-to="0"#}
+{#                                           data-target="#carDetailsSlider">#}
+{#                                            <img src="{{ single_car.car_photo.url }}" class="img-fluid" alt="small-car">#}
+{#                                        </a>#}
+{#                                    </li>#}
+{##}
+{#                                    {% if single_car.car_photo_1 %}#}
+{#                                        <li class="list-inline-item">#}
+{#                                            <a id="carousel-selector-1" data-slide-to="1"#}
+{#                                               data-target="#carDetailsSlider">#}
+{#                                                <img src="{{ single_car.car_photo_1.url }}" class="img-fluid"#}
+{#                                                     alt="small-car">#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    {% if single_car.car_photo_2 %}#}
+{#                                        <li class="list-inline-item">#}
+{#                                            <a id="carousel-selector-2" data-slide-to="2"#}
+{#                                               data-target="#carDetailsSlider">#}
+{#                                                <img src="{{ single_car.car_photo_2.url }}" class="img-fluid"#}
+{#                                                     alt="small-car">#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    {% if single_car.car_photo_3 %}#}
+{#                                        <li class="list-inline-item">#}
+{#                                            <a id="carousel-selector-3" data-slide-to="3"#}
+{#                                               data-target="#carDetailsSlider">#}
+{#                                                <img src="{{ single_car.car_photo_3.url }}" class="img-fluid"#}
+{#                                                     alt="small-car">#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    {% if single_car.car_photo_4 %}#}
+{##}
+{#                                        <li class="list-inline-item">#}
+{#                                            <a id="carousel-selector-4" data-slide-to="4"#}
+{#                                               data-target="#carDetailsSlider">#}
+{#                                                <img src="{{ single_car.car_photo_4.url }}" class="img-fluid"#}
+{#                                                     alt="small-car">#}
+{#                                            </a>#}
+{#                                        </li>#}
+{#                                    {% endif %}#}
+{#                                </ul>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{##}
+{##}
+{#                        <!-- Tabbing box start -->#}
+{#                        <div class="tabbing tabbing-box mb-40">#}
+{#                            <ul class="nav nav-tabs" id="carTab" role="tablist">#}
+{#                                <li class="nav-item">#}
+{#                                    <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one"#}
+{#                                       role="tab" aria-controls="one" aria-selected="false">Огляд автомобіля</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                            <div class="tab-content" id="carTabContent">#}
+{#                                <div class="tab-pane fade active show" id="one" role="tabpanel"#}
+{#                                     aria-labelledby="one-tab">#}
+{#                                    <div class="car-description mb-50">#}
+{#                                        <h3 class="heading-2">#}
+{#                                            Опис#}
+{#                                        </h3>#}
+{#                                        <p>#}
+{#                                            {{ single_car.description | safe }}#}
+{#                                        </p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                #}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-4 col-md-12">#}
+{#                    <div class="sidebar-right">#}
+{#                        <!-- Advanced search start -->#}
+{#                        <div class="widget advanced-search d-none-992">#}
+{##}
+{#                            <h3 class="sidebar-title">Технічні характеристики:</h3>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <span>Модель: </span>{{ single_car.model }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Рік: </span>{{ single_car.year }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Двигун:</span>{{ single_car.engine }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Пробіг:</span>{{ single_car.miles | intcomma }} км#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Коробка:</span>{{ single_car.transmission }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Колір: </span>{{ single_car.color }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Тип кузова:</span>{{ single_car.body_style }}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <span>Салон:</span>{{ single_car.interior }}#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <span>Vin №:</span>{{ single_car.vin_number }}#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <span>Паливо:</span>{{ single_car.fuel_type }}#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                            #}
+{#                            <button class="btn btn-outline-danger bomd btn-block btn-lg mt-4" data-toggle="modal"#}
+{#                                    data-target="#inquiryModal">Консультація#}
+{#                            </button>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Inquiry Modal -->#}
+{#                        <div class="modal fade" id="inquiryModal" role="dialog">#}
+{#                            <div class="modal-dialog">#}
+{#                                <div class="modal-content">#}
+{#                                    <div class="contact-dealer modal-header">#}
+{#                                        <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->#}
+{#                                        <center><img src="{% static 'img/logos/new-black-logo.png' %}"></center>#}
+{#                                        <button type="button" class="close" data-dismiss="modal">#}
+{#                                            <span>&times;</span>#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                    <div class="modal-body">#}
+{#                                        <form action="{% url 'inquiry' %}" method="POST">#}
+{#                                            {% csrf_token %}#}
+{##}
+{##}
+{#                                            <input type="hidden" name="user_id" value="0">#}
+{##}
+{#                                            <input type="hidden" name="car_id" value="{{ single_car.id }}">#}
+{#                                            <div class="form-group">#}
+{#                                                <label for="name" class="col-form-label"#}
+{#                                                       style="font-weight: 600; font-size: 18px;">ЗАЛИШТЕ КОНТАКТНІ#}
+{#                                                    ДАНІ.#}
+{#                                                    МИ ЗВ'ЯЖЕМОСЬ З ВАМИ НАЙБЛИЖЧИМ ЧАСОМ</label>#}
+{#                                                <div class="row">#}
+{#                                                    <div class="col">#}
+{#                                                        <input type="text" name="first_name" class="form-control"#}
+{#                                                               placeholder="Ім'я" required>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="form-group">#}
+{#                                                <input type="text" name="car_title" class="form-control"#}
+{#                                                       value="{{ single_car.car_title }}" readonly>#}
+{#                                            </div>#}
+{##}
+{##}
+{#                                            <div class="form-group">#}
+{#                                                <div class="row">#}
+{##}
+{#                                                    <div class="col">#}
+{#                                                        <label for="phone" class="col-form-label">Контакт:</label>#}
+{#                                                        <input type="text" name="phone"#}
+{#                                                               placeholder="Мобільний телефон"#}
+{#                                                               class="form-control">#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="form-group">#}
+{#                                                <label for="message" class="col-form-label">Коментар</label>#}
+{#                                                <textarea name="message" class="form-control"#}
+{#                                                          placeholder="Залиште ваш коментар (необов'язково)"></textarea>#}
+{#                                            </div>#}
+{#                                            <hr>#}
+{#                                            <input type="submit" value="Відправити" class="btn btn-block btn-danger">#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <!-- Question start -->#}
+{#                        <div class="widget question">#}
+{#                            <h5 class="sidebar-title">Наші контакти</h5>#}
+{#                            <ul class="contact-info">#}
+{#                                <li>#}
+{#                                    <a target="_blank" href="https://www.google.com/maps/place/50%C2%B025'53.5%22N+30%C2%B028'25.2%22E/@50.431529,30.473664,16z/data=!4m4!3m3!8m2!3d50.431529!4d30.473664?entry=ttu"><i class="flaticon-pin"></i>вул. Василя Липківського, 45, Київ, Україна, 02000</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <i class="flaticon-mail"></i><a href="mailto:info@themevessel.com">info@themevessel.com</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+0477 85x6 552</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                            <div class="social-list clearfix">#}
+{#                                <ul>#}
+{#                                    <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>#}
+{#                                    <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>#}
+{#                                    <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>#}
+{#                                    <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>#}
+{#                                    <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Properties details page end -->#}
+{#{% endblock %}#}
+
+
+{% extends 'base.html' %}
+
+{% block title %} | {{ single_car.car_title }} {% endblock %}
+
+{% block content %}
+
+    {% load static %}
+    {% load humanize %}
+
+    <!-- Sub banner start -->
+
+    <div class="sub-banner overview-bgi">
+        <div class="container breadcrumb-area">
+            <div class="breadcrumb-areas">
+                <h1>{{ single_car.car_title }}</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'home' %}">Головна</a></li>
+                    <li class="active">{{ single_car.car_title }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Sub Banner end -->
+
+    <!-- Car details page start -->
+    <div class="car-details-page content-area-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-xs-12">
+                    <div class="car-details-section">
+                        <!-- Heading start -->
+                        <div class="heading-car clearfix">
+                            {% include 'includes/messages.html' %}
+                            <div class="pull-left">
+                                <h3>{{ single_car.car_title }}</h3>
+                            </div>
+                            <div class="pull-right">
+                                <h3><span>{{ single_car.price | intcomma }}$</span></h3>
+                            </div>
+                        </div>
+                        <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40">
+                            <!-- main slider carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item carousel-item" data-slide-number="0">
+                                    <img src="{{ single_car.car_photo.url }}" class="img-fluid" alt="slider-car">
+                                </div>
+
+                                {% if single_car.car_photo_1 %}
+                                    <div class="item carousel-item" data-slide-number="1">
+                                        <img src="{{ single_car.car_photo_1.url }}" class="img-fluid" alt="slider-car">
+                                    </div>
+                                {% endif %}
+
+                                {% if single_car.car_photo_2 %}
+                                    <div class="item carousel-item" data-slide-number="2">
+                                        <img src="{{ single_car.car_photo_2.url }}" class="img-fluid" alt="slider-car">
+                                    </div>
+                                {% endif %}
+
+                                {% if single_car.car_photo_3 %}
+                                    <div class="item carousel-item" data-slide-number="4">
+                                        <img src="{{ single_car.car_photo_3.url }}" class="img-fluid" alt="slider-car">
+                                    </div>
+                                {% endif %}
+
+                                {% if single_car.car_photo_4 %}
+                                    <div class="item carousel-item" data-slide-number="5">
+                                        <img src="{{ single_car.car_photo_4.url }}" class="img-fluid" alt="slider-car">
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            <!-- main slider carousel nav controls -->
+                            <div class="carousel-indicators-section clearfix">
+                                <ul class="carousel-indicators car-properties list-inline nav nav-justified">
+                                    <li class="list-inline-item active">
+                                        <a id="carousel-selector-0" class="selected" data-slide-to="0"
+                                           data-target="#carDetailsSlider">
+                                            <img src="{{ single_car.car_photo.url }}" class="img-fluid" alt="small-car">
+                                        </a>
+                                    </li>
+
+                                    {% if single_car.car_photo_1 %}
+                                        <li class="list-inline-item">
+                                            <a id="carousel-selector-1" data-slide-to="1"
+                                               data-target="#carDetailsSlider">
+                                                <img src="{{ single_car.car_photo_1.url }}" class="img-fluid"
+                                                     alt="small-car">
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if single_car.car_photo_2 %}
+                                        <li class="list-inline-item">
+                                            <a id="carousel-selector-2" data-slide-to="2"
+                                               data-target="#carDetailsSlider">
+                                                <img src="{{ single_car.car_photo_2.url }}" class="img-fluid"
+                                                     alt="small-car">
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if single_car.car_photo_3 %}
+                                        <li class="list-inline-item">
+                                            <a id="carousel-selector-3" data-slide-to="3"
+                                               data-target="#carDetailsSlider">
+                                                <img src="{{ single_car.car_photo_3.url }}" class="img-fluid"
+                                                     alt="small-car">
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if single_car.car_photo_4 %}
+
+                                        <li class="list-inline-item">
+                                            <a id="carousel-selector-4" data-slide-to="4"
+                                               data-target="#carDetailsSlider">
+                                                <img src="{{ single_car.car_photo_4.url }}" class="img-fluid"
+                                                     alt="small-car">
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Tabbing box start -->
+                        <div class="tabbing tabbing-box mb-40">
+                            <ul class="nav nav-tabs border-rad" id="carTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one"
+                                       role="tab" aria-controls="one" aria-selected="false">Огляд автомобіля</a>
+                                </li>
+                            </ul>
+                            
+                        {# ------------------ Mobile Version ----------------------  #}
+                        <div class="widget advanced-search d-none-992 display-mobile">
+
+                            <h3 class="sidebar-title">Технічні характеристики:</h3>
+                            <ul>
+                                <li>
+                                    <span>Модель: </span>{{ single_car.model }}
+                                </li>
+                                <li>
+                                    <span>Рік: </span>{{ single_car.year }}
+                                </li>
+                                <li>
+                                    <span>Двигун:</span>{{ single_car.engine }}
+                                </li>
+                                <li>
+                                    <span>Пробіг:</span>{{ single_car.miles | intcomma }} км
+                                </li>
+                                <li>
+                                    <span>Коробка:</span>{{ single_car.transmission }}
+                                </li>
+                                <li>
+                                    <span>Колір: </span>{{ single_car.color }}
+                                </li>
+                                <li>
+                                    <span>Тип кузова:</span>{{ single_car.body_style }}
+                                </li>
+                                <li>
+                                    <span>Салон:</span>{{ single_car.interior }}
+                                </li>
+
+                                <li>
+                                    <span>Vin №:</span>{{ single_car.vin_number }}
+                                </li>
+
+                                <li>
+                                    <span>Паливо:</span>{{ single_car.fuel_type }}
+                                </li>
+                            </ul>
+                            
+                            <button class="btn btn-outline-danger bomd btn-block btn-lg mt-4 border-rad" data-toggle="modal"
+                                    data-target="#inquiryModal">Консультація
+                            </button>
+                        </div>
+                            
+                            <div class="tab-content" id="carTabContent">
+                                <div class="tab-pane fade active show" id="one" role="tabpanel"
+                                     aria-labelledby="one-tab">
+                                    <div class="car-description mb-50">
+                                        <h3 class="heading-2">
+                                            Опис
+                                        </h3>
+                                        <p>
+                                            {{ single_car.description | safe }}
+                                        </p>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="sidebar-right">
+                        <!-- Advanced search start -->
+                        <div class="widget advanced-search d-none-992 sidebar-right display-pc" style="box-shadow: 0 0 35px rgba(0, 0, 0, 0.1); background: #fff;">
+
+                            <h3 class="sidebar-title">Технічні характеристики:</h3>
+                            <ul>
+                                <li>
+                                    <span>Модель: </span>{{ single_car.model }}
+                                </li>
+                                <li>
+                                    <span>Рік: </span>{{ single_car.year }}
+                                </li>
+                                <li>
+                                    <span>Двигун:</span>{{ single_car.engine }}
+                                </li>
+                                <li>
+                                    <span>Пробіг:</span>{{ single_car.miles | intcomma }} км
+                                </li>
+                                <li>
+                                    <span>Коробка:</span>{{ single_car.transmission }}
+                                </li>
+                                <li>
+                                    <span>Колір: </span>{{ single_car.color }}
+                                </li>
+                                <li>
+                                    <span>Тип кузова:</span>{{ single_car.body_style }}
+                                </li>
+                                <li>
+                                    <span>Салон:</span>{{ single_car.interior }}
+                                </li>
+
+                                <li>
+                                    <span>Vin №:</span>{{ single_car.vin_number }}
+                                </li>
+
+                                <li>
+                                    <span>Паливо:</span>{{ single_car.fuel_type }}
+                                </li>
+                            </ul>
+                            
+                            <button class="btn btn-outline-danger bomd btn-block btn-lg mt-4 border-rad" data-toggle="modal"
+                                    data-target="#inquiryModal">Консультація
+                            </button>
+                        </div>
+                         
+
+                        <!-- Inquiry Modal -->
+                        <div class="modal fade" id="inquiryModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="contact-dealer modal-header">
+                                        <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                                        <center><img src="{% static 'img/logos/new-black-logo.png' %}"></center>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span>&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{% url 'inquiry' %}" method="POST">
+                                            {% csrf_token %}
+
+
+                                            <input type="hidden" name="user_id" value="0">
+
+                                            <input type="hidden" name="car_id" value="{{ single_car.id }}">
+                                            <div class="form-group">
+                                                <label for="name" class="col-form-label"
+                                                       style="font-weight: 600; font-size: 18px;">ЗАЛИШТЕ КОНТАКТНІ
+                                                    ДАНІ.
+                                                    МИ ЗВ'ЯЖЕМОСЬ З ВАМИ НАЙБЛИЖЧИМ ЧАСОМ</label>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="text" name="first_name" class="form-control"
+                                                               placeholder="Ім'я" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" name="car_title" class="form-control"
+                                                       value="{{ single_car.car_title }}" readonly>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="row">
+
+                                                    <div class="col">
+                                                        <label for="phone" class="col-form-label">Контакт:</label>
+                                                        <input type="text" name="phone"
+                                                               placeholder="Мобільний телефон"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="message" class="col-form-label">Коментар</label>
+                                                <textarea name="message" class="form-control"
+                                                          placeholder="Залиште ваш коментар (необов'язково)"></textarea>
+                                            </div>
+                                            <hr>
+                                            <input type="submit" value="Відправити" class="btn btn-block btn-danger">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Question start -->
+                        <div class="widget question">
+                            <h5 class="sidebar-title">Наші контакти</h5>
+                            <ul class="contact-info">
+                                <li>
+                                    <a target="_blank" href="https://www.google.com/maps/place/50%C2%B025'53.5%22N+30%C2%B028'25.2%22E/@50.431529,30.473664,16z/data=!4m4!3m3!8m2!3d50.431529!4d30.473664?entry=ttu"><i class="flaticon-pin"></i>вул. Василя Липківського, 45, Київ, Україна, 02000</a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-mail"></i><a href="mailto:info@themevessel.com">info@themevessel.com</a>
+                                </li>
+                                <li>
+                                    <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+0477 85x6 552</a>
+                                </li>
+                            </ul>
+                            <div class="social-list clearfix">
+                                <ul>
+                                    <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" class="google-bg"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                                    <li><a href="#" class="linkedin-bg"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Properties details page end -->
+{% endblock %}

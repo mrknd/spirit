@@ -1,0 +1,40 @@
+<!-- Top header start -->
+<header class="top-header th-2 top-header-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7">
+                <div class="list-inline">
+                    <a href="tel:+380-66-445-99-18"><i class="fa fa-phone"></i>+380-66-445-99-18</a>
+                    <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>info@themevessel.com</a>
+                    <a href="tel:info@themevessel.com"><i class="fa fa-clock-o"></i>Пон - Пн: 9:00 - 19:00</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5">
+                <ul class="top-social-media pull-right">
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'dashboard' %}" class="sign-in"><i class="fa fa-tachometer"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}" class="sign-in"><i class="fa fa-tachometer"></i> Logout</a>
+                            
+{#                            <a href="javascript:{document.getElementbyId('logout').submit()}" class="sign-out"><i class="fa fa-sign-out"></i> Logout</a>#}
+{#                            <form action="{% url 'logout' %}" id="logout" method="POST">#}
+{#                                {% csrf_token %}#}
+{#                                <input type="hidden">#}
+{#                            </form>#}
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}" class="sign-in"><i class="fa fa-user"></i> Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'register' %}" class="sign-in"><i class="fa fa-user"></i> Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Top header end -->

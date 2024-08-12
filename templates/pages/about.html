@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %} | About Us {% endblock %}
+
+{% block content %}
+    {% load static %}
+    <!-- Sub banner start -->
+    <div class="sub-banner overview-bgi">
+        <div class="container breadcrumb-area">
+            <div class="breadcrumb-areas">
+                <h1>Про Нас</h1>
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'home' %}">Головна</a></li>
+                    <li class="active">Про Нас</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service center strat -->
+    <div class="about-car content-area-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6">
+                    <div class="about-car-photo">
+                        <div id="carDetailsSlider" class="carousel car-details-sliders slide">
+                            <!-- main slider carousel items -->
+                            <div class="carousel-inner mb-3">
+                                <img src="{% static 'img/car/car-1.jpg' %}" class="img-fluid" alt="slider-car">
+                            </div>
+                            <div class="carousel-inner">
+                                <img src="{% static 'img/car/car-1.jpg' %}" class="img-fluid" alt="slider-car">
+                            </div>
+                            <!-- main slider carousel nav controls -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-6 align-self-center">
+                    <div class="best-used-car">
+                        <h3><span>Spirit Auto</span> - Ваш надійний провідник у світі автомобільних можливостей з США,
+                            Канади, Китаю та Кореї. </h3>
+                        <p>Ми спеціалізуємося на повному циклі послуг, що включає:</p>
+                        <ul class="specialization-list mb-3">
+                            <li>Підбір</li>
+                            <li>Доставка</li>
+                            <li>Розмитнення</li>
+                            <li>Cертифікація</li>
+                            <li>Ремонт та обслуговування</li>
+                        </ul>
+                        <p class="mb-4">Наша команда досвідчених фахівців працює наполегливо, щоб забезпечити вам доступ
+                            до широкого асортименту якісних авто з усього Світу 🌍</p>
+                        <h3>• Підбір</h3>
+                        <p class="mb-3">Ми знаємо, що ваш ідеальний автомобіль - це більше, ніж просто транспортний
+                            засіб.
+                            Наші експерти ретельно вивчають ваші потреби та бюджет, щоб знайти саме те, що ви шукаєте.
+                            Від економних сімейних авто до ексклюзивних спорткарів - ми знаходимо ідеальне рішення для
+                            кожного клієнта.</p>
+                        <h3>• Доставка</h3>
+                        <p class="mb-3">Завдяки нашим партнерським зв'язкам та експертизі в сфері логістики, ми
+                            забезпечуємо безпроблемний та ефективний процес доставки автомобілів з усього Світу.
+                            Незалежно від вашого місцезнаходження, ми доставимо ваш новий автомобіль прямо до вас з
+                            мінімальними зусиллями з вашого </p>
+                        <h3>• Ремонт</h3>
+                        <p class="mb-3">Ваше задоволення - наш пріоритет. Наші кваліфіковані механіки та техніки готові
+                            забезпечити ваш автомобіль необхідним обслуговуванням та ремонтом. Ми використовуємо тільки
+                            найсучасніші технології та оригінальні запчастини, щоб забезпечити вам максимальну безпеку
+                            та комфорт на дорозі. </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service center end -->
+
+
+
+    <!-- Our team start -->
+    <div class="our-team content-area">
+        <div class="container">
+            <!-- Main title -->
+            <div class="main-title">
+                <h1>Команда <span>Професіоналів</span></h1>
+                <p>Ваша довіра для нас найважливіша</p>
+            </div>
+            <!-- Slick slider area start -->
+            <div class="slick-slider-area clearfix">
+                <div class="row slick-carousel"
+                     data-slick='{"slidesToShow": 4, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                    {% for team in teams %}
+                        <div class="slick-slide-item">
+                            <div class="team-1">
+                                <div class="photo">
+                                    <a href="#">
+                                        <img src="{{ team.photo.url }}" alt="team-1" class="img-fluid">
+                                    </a>
+                                    <div class="social-list clearfix">
+                                        <a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a>
+                                        <a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a>
+                                        <a href="#" class="google-bg"><i class="fa fa-google"></i></a>
+                                    </div>
+                                </div>
+                                <div class="details">
+                                    <h4><a href="team-detail.html">{{ team.first_name }} {{ team.last_name }}</a></h4>
+                                    <h5>{{ team.designation }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our team end -->
+
+{% endblock %}

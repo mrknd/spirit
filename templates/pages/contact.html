@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %} | Contacts {% endblock %}
+
+{% block content %}
+    {% load static %}
+    
+    <!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container breadcrumb-area">
+        <div class="breadcrumb-areas">
+            <h1>Контакти</h1>
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'home' %}">Головна</a></li>
+                <li class="active">Контакти</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Sub Banner end -->
+    
+<div class="contact-2 content-area-5">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title text-center">
+            <h1>Контакти<span></span></h1>
+            <p>Залишіть ваші дані і ми з Вами найближчим часом зв'яжемось  </p>
+        </div>
+        
+        <form action="{% url 'contact' %}" method="POST" enctype="multipart/form-data">
+            
+            {% include 'includes/messages.html' %}
+            
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <div class="form-group name">
+                                <input type="text" name="name" class="form-control" placeholder="Ім'я" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group number">
+                                <input type="text" name="phone" class="form-control" placeholder="Номер телефону">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group message">
+                                <textarea class="form-control" name="message" placeholder="Ваше повідомлення (необов'язково)"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="send-btn text-center">
+                                <button type="submit" class="btn btn-md button-theme">Відправити</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="contact-info-2">
+                        <div class="ci-box">
+                            <div class="icon">
+                                <i class="flaticon-phone"></i>
+                            </div>
+                            <div class="detail">
+                                <h5>Мобільний:</h5>
+                                <p><a href="#">0477 8556 552</a></p>
+                            </div>
+                        </div>
+                        <div class="ci-box">
+                            <div class="icon">
+                                <i class="flaticon-mail"></i>
+                            </div>
+                            <div class="detail">
+                                <h5>Email:</h5>
+                                <p><a href="#">info@themevessel.com</a></p>
+                            </div>
+                        </div>
+                        <div class="ci-box">
+                            <div class="icon">
+                                <i class="flaticon-earth"></i>
+                            </div>
+                            <div class="detail">
+                                <h5>Web:</h5>
+                                <p><a href="#">info@themevessel.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Contact 2 end -->   
+
+{% endblock %}
